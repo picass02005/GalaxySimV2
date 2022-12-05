@@ -1,6 +1,5 @@
 package com.picasso;
 
-import java.util.Hashtable;
 import java.util.List;
 
 /**
@@ -9,7 +8,8 @@ import java.util.List;
  * @author picasso2005
  */
 public class Vector {
-    Hashtable<Character, Float> position = new Hashtable<>();
+    float x;
+    float y;
 
     /**
      * Class constructor to create a vector associated with 2 coordinates
@@ -18,8 +18,8 @@ public class Vector {
      * @param y The y-axis coordinates component
      */
     public Vector(float x, float y) {
-        this.position.put('x', x);
-        this.position.put('y', y);
+        this.x = x;
+        this.y = y;
     }
 
     /**
@@ -32,8 +32,8 @@ public class Vector {
         Vector addedVectors = new Vector(0, 0);
 
         for (Vector vector : vectors) {
-            addedVectors.position.replace('x', addedVectors.position.get('x') + vector.position.get('x'));
-            addedVectors.position.replace('y', addedVectors.position.get('y') + vector.position.get('y'));
+            addedVectors.x = addedVectors.x + vector.x;
+            addedVectors.y = addedVectors.y + vector.y;
         }
 
         return addedVectors;
