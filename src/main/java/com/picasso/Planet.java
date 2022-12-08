@@ -12,12 +12,13 @@ import static java.lang.Math.*;
  * @author picasso2005
  */
 public class Planet {
-    public final int mass;
-    public final Color color;
     private final double G = (6.6743 * pow(10, -11));
+
     public Float x;
     public Float y;
     public Vector velocity;
+    public final int mass;
+    public final Color color;
 
     /**
      * Class constructor, must be only called by builder
