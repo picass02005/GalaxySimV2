@@ -33,10 +33,25 @@ public class Planet {
         this.color = builder.color;
     }
 
-    private double calcHalfCoordinate(float a, float b, double ab, double acceleration) {
-        return 1 / ab * abs(acceleration) * (b - a) + a;
+    /**
+     * Internal method to calculate a half-vector using 2 point (A and B) half-coordinate (X or Y),
+     * AB distance and a vector length
+     *
+     * @param a      A point half coordinate (can be X or Y value)
+     * @param b      B point half coordinate (can be X or Y, must be the same as A)
+     * @param ab     AB length
+     * @param length Returned vector length
+     * @return The half coordinates of the vector calculated (either X or Y)
+     */
+    private double calcHalfCoordinate(float a, float b, double ab, double length) {
+        return 1 / ab * abs(length) * (b - a) + a;
     }
 
+    /**
+     * Calculate gravitational acceleration and add it to current velocity
+     *
+     * @param planets List of all planets in simulation
+     */
     private void calculateNewVelocity(List<Planet> planets) {
         Vector accelVector = new Vector(0, 0);
 
