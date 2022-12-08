@@ -1,41 +1,40 @@
 package com.picasso;
 
-import java.util.List;
-
 /**
  * Class used to define a vector coordinates and add multiple vectors
  *
  * @author picasso2005
  */
 public class Vector {
-    float x;
-    float y;
+    double x;
+    double y;
 
     /**
      * Class constructor to create a vector associated with 2 coordinates
      *
-     * @param x The x-axis coordinates component
-     * @param y The y-axis coordinates component
+     * @param x The x-axis coordinates component (works with float or double)
+     * @param y The y-axis coordinates component (works with float or double)
      */
     public Vector(float x, float y) {
         this.x = x;
         this.y = y;
     }
 
+    public Vector(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
     /**
-     * Static method made to add 2 or more vectors together
+     * Static method made to add 2 vectors together
      *
-     * @param vectors A list of Vector object to add together
+     * @param vector A vector to add to the current one
      * @return The resulting vector
      */
-    public static Vector addVectors(List<Vector> vectors) {
-        Vector addedVectors = new Vector(0, 0);
+    public Vector addVector(Vector vector) {
+        this.x += vector.x;
+        this.y += vector.y;
 
-        for (Vector vector : vectors) {
-            addedVectors.x = addedVectors.x + vector.x;
-            addedVectors.y = addedVectors.y + vector.y;
-        }
-
-        return addedVectors;
+        return this;
     }
 }
