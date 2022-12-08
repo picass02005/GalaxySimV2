@@ -14,8 +14,8 @@ import static java.lang.Math.*;
 public class Planet {
     private final double G = (6.6743 * pow(10, -11));
 
-    public Float x;
-    public Float y;
+    public Double x;
+    public Double y;
     public Vector velocity;
     public final int mass;
     public final Color color;
@@ -43,7 +43,7 @@ public class Planet {
      * @param length Returned vector length
      * @return The half coordinates of the vector calculated (either X or Y)
      */
-    private double calcHalfCoordinate(float a, float b, double ab, double length) {
+    private double calcHalfCoordinate(Double a, Double b, Double ab, Double length) {
         return 1 / ab * abs(length) * (b - a) + a;
     }
 
@@ -75,13 +75,21 @@ public class Planet {
     }
 
     /**
+     * Apply current velocity to planet to calculate new position
+     */
+    private void calculateNewPosition() {
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+    }
+
+    /**
      * Builder class made to generate all parameters for Planet class if user don't give them
      *
      * @author picasso2005
      */
     public static class Builder {
-        private Float x;
-        private Float y;
+        private Double x;
+        private Double y;
         private Vector velocity = null;
         private Integer mass = 0;
         private Color color = null;
@@ -93,7 +101,7 @@ public class Planet {
          * @param y The desired y coordinate
          * @return Builder with this parameter updated
          */
-        public Builder position(Float x, Float y) {
+        public Builder position(Double x, Double y) {
             this.x = x;
             this.y = y;
 
@@ -148,12 +156,12 @@ public class Planet {
 
             if (this.x == null) {
                 final int max_x = 1920; // TODO: config file
-                this.x = rand.nextFloat(max_x * 2) - max_x;
+                this.x = rand.nextDouble(max_x * 2) - max_x;
             }
 
             if (this.y == null) {
                 final int max_y = 1080; // TODO: config file
-                this.y = rand.nextFloat(max_y * 2) - max_y;
+                this.y = rand.nextDouble(max_y * 2) - max_y;
             }
 
             if (this.velocity == null) {
