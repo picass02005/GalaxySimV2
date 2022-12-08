@@ -33,6 +33,16 @@ public class Planet {
         this.color = builder.color;
     }
 
+    public static void calculateNewStep(List<Planet> planets) {
+        for (Planet planet : planets) {
+            planet.calculateNewVelocity(planets);
+        }
+
+        for (Planet planet : planets) {
+            planet.calculateNewPosition();
+        }
+    }
+
     /**
      * Internal method to calculate a half-vector using 2 point (A and B) half-coordinate (X or Y),
      * AB distance and a vector length
@@ -44,7 +54,15 @@ public class Planet {
      * @return The half coordinates of the vector calculated (either X or Y)
      */
     private double calcHalfCoordinate(Double a, Double b, Double ab, Double length) {
-        return 1 / ab * abs(length) * (b - a) + a;
+        return (1 / ab) * abs(length) * (b - a);
+    }
+
+    /**
+     * Apply current velocity to planet to calculate new position
+     */
+    private void calculateNewPosition() {
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
     }
 
     /**
@@ -62,7 +80,7 @@ public class Planet {
 
                 // F = G * ((m1 * m2) / d^2)
                 // a = F / m
-                double gravAccel = this.mass / (this.G * ((this.mass * planet.mass) / pow(distance, 2)));
+                double gravAccel = (this.G * ((this.mass * planet.mass) / pow(distance, 2))) / this.mass;
 
                 accelVector.addVector(new Vector(
                         calcHalfCoordinate(this.x, planet.x, distance, gravAccel),
@@ -72,14 +90,6 @@ public class Planet {
         }
 
         this.velocity.addVector(accelVector);
-    }
-
-    /**
-     * Apply current velocity to planet to calculate new position
-     */
-    private void calculateNewPosition() {
-        this.x += this.velocity.x;
-        this.y += this.velocity.y;
     }
 
     /**
