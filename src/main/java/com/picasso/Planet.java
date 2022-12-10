@@ -93,7 +93,7 @@ public class Planet {
     }
 
     /**
-     * Builder class made to generate all parameters for Planet class if user don't give them
+     * Builder class made to generate all parameters for Planet class
      *
      * @author picasso2005
      */
