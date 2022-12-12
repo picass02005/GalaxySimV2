@@ -1,5 +1,7 @@
 package com.picasso;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,29 @@ public class VideoRenderer {
         this.coordinateFactor = builder.coordinateFactor;
         this.planetSizeFactor = builder.planetSizeFactor;
         this.outputFile = builder.outputFile;
+    }
+
+    /**
+     * Private method used to render 1 frame
+     *
+     * @return The frame generated
+     */
+    private BufferedImage renderFrame() {
+        BufferedImage image = new BufferedImage(this.width, this.height, BufferedImage.TYPE_3BYTE_BGR);
+        Graphics graphics = image.getGraphics();
+
+        for (Planet planet : this.planets) {
+            int size = (Math.max((int) (planet.mass * this.planetSizeFactor), 1));
+
+            graphics.setColor(planet.color);
+
+            graphics.fillArc(
+                    (int) (this.width / 2 - size / 2 + (planet.x * this.coordinateFactor)),
+                    (int) (this.height / 2 - size / 2 + (planet.y * this.coordinateFactor)),
+                    size, size, 0, 360);
+        }
+
+        return image;
     }
 
     /**
