@@ -12,7 +12,7 @@ import static java.lang.Math.*;
  * @author picasso2005
  */
 public class Planet {
-    private final double G = (6.6743 * pow(10, -11));  // TODO: define a factor in config file
+    private final double G = (6.6743 * pow(10, -11));  // TODO: define a factor in config file; multiply by TimeFactor/FPS
 
     public Double x;
     public Double y;
