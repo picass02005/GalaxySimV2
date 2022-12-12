@@ -101,7 +101,7 @@ public class Planet {
         private Double x;
         private Double y;
         private Vector velocity = null;
-        private Integer mass = 0;
+        private Integer mass;
         private Color color = null;
 
         /**
@@ -165,12 +165,12 @@ public class Planet {
             final Random rand = new Random();
 
             if (this.x == null) {
-                final int max_x = 1920; // TODO: config file
+                final int max_x = 960; // TODO: config file
                 this.x = rand.nextDouble(max_x * 2) - max_x;
             }
 
             if (this.y == null) {
-                final int max_y = 1080; // TODO: config file
+                final int max_y = 540; // TODO: config file
                 this.y = rand.nextDouble(max_y * 2) - max_y;
             }
 
